@@ -6,5 +6,6 @@
 
 ## ALGORITHMS
 * RecursiveEliminate.cs
-### SORT
-* HeapSort.cs
+* ### SORT
+    * HeapSort.cs
+    * MergeSort.cs
