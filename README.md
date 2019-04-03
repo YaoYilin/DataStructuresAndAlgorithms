@@ -5,6 +5,6 @@
 * KeyedPriorityQueue.cs
 
 ## ALGORITHMS
-
+* RecursiveEliminate.cs
 ### SORT
 * HeapSort.cs
