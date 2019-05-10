@@ -53,9 +53,22 @@ public class PriorityQueue<T> where T : IPriority
             return default(T);
         }
         T value = m_Heap[0];
-        m_Heap.RemoveAt(0);
-        Heapify(0);
+        Remove(0);
         return value;
+    }
+
+    public bool Remove(int index)
+    {
+        if (m_Heap.Count <= index)
+        {
+            return false;
+        }
+
+        Swap(index, m_Heap.Count - 1);
+        m_Heap.RemoveAt(m_Heap.Count - 1);
+        Heapify(index);
+
+        return true;
     }
 
     public void Enqueue(T value)
