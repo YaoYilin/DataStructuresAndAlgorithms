@@ -5,6 +5,7 @@
 * Graph.cs
 * KeyedPriorityQueue.cs
 * PriorityQueue.cs
+* BSTree.cs
 
 ## ALGORITHMS
 * RecursiveEliminate.cs
