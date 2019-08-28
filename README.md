@@ -2,10 +2,10 @@
 
 ## DATA STRUCTURES
 * BinaryTree.cs
+* BSTree.cs  [Binary Search Tree]
 * Graph.cs
 * KeyedPriorityQueue.cs
 * PriorityQueue.cs
-* BSTree.cs
 
 ## ALGORITHMS
 * RecursiveEliminate.cs
