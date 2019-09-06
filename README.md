@@ -6,6 +6,7 @@
 * Graph.cs
 * KeyedPriorityQueue.cs
 * PriorityQueue.cs
+* RedBlackTree.cs  [Left-leaning Red-Black Trees]
 
 ## ALGORITHMS
 * RecursiveEliminate.cs
