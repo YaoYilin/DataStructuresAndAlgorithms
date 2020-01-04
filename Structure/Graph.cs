@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Graph
 {
@@ -21,7 +22,7 @@ public class Graph
             foreach (var edge in v.Edges)
             {
                 int distance = edge.Distance + v.MinDistance;
-                if(edge.To.MinDistance > distance)
+                if (edge.To.MinDistance > distance)
                 {
                     edge.To.MinDistance = distance;
                     int i;
@@ -37,8 +38,56 @@ public class Graph
             }
             map.Add(v.Index, v);
         }
-        
+
         return map[v2.Index].MinDistance;
+    }
+
+    public void Tarjan()
+    {
+        Stack<Vertex> stack = new Stack<Vertex>();
+        int index = 0;
+        foreach (var v in Vertexs)
+        {
+            if (!v.IsSearched)
+            {
+                Tarjan(stack, v, ref index);
+            }
+        }
+    }
+
+    private void Tarjan(Stack<Vertex> stack, Vertex v, ref int index)
+    {
+        v.Link = index;
+        v.LowerLink = index;
+        index++;
+        stack.Push(v);
+        v.IsSearched = true;
+        foreach (var edge in v.Edges)
+        {
+            var w = edge.To;
+            if (!w.IsSearched)
+            {
+                Tarjan(stack, w, ref index);
+                v.LowerLink = System.Math.Min(v.LowerLink, w.LowerLink);
+            }
+            else if (stack.Contains(edge.To))
+            {
+                v.LowerLink = System.Math.Min(v.LowerLink, w.Link);
+            }
+        }
+
+        if (v.IsSearched && v.Link == v.LowerLink)
+        {
+            Console.WriteLine("---");
+            Vertex x = null;
+            while (x != v)
+            {
+                x = stack.Pop();
+                Console.Write(x.Index);
+                Console.Write(" ");
+            }
+            Console.WriteLine();
+        }
     }
 
     public enum State
@@ -89,6 +138,9 @@ public class Graph
             Index = index;
             MinDistance = int.MaxValue;
             State = State.NotVisited;
+            IsSearched = false;
+            Link = -1;
+            LowerLink = -1;
         }
 
         public List<Edge> Edges = new List<Edge>();
@@ -107,7 +159,7 @@ public class Graph
         public int Index
         {
             get;
-            private set;
+            set;
         }
 
         public State State
@@ -116,11 +168,15 @@ public class Graph
             set;
         }
 
+        public bool IsSearched { get; set; }
+        public int LowerLink { get; set; }
+        public int Link { get; set; }
         public int Priority { get { return MinDistance; } }
 
         public override string ToString()
         {
-            return Index.ToString() + " " + MinDistance;
+            //return Index.ToString() + " " + MinDistance;
+            return $"Index {Index}, Link {Link}, LowerLink {LowerLink}";
         }
     }
 }
