@@ -11,6 +11,7 @@
 ## ALGORITHMS
 * RecursiveEliminate.cs
 * Dijkstra (Graph.Dijkstra)
+* Tarjan (Graph.Tarjan)
 
 * ### SORT
     * HeapSort.cs
