@@ -16,3 +16,4 @@
 * ### SORT
     * HeapSort.cs
     * MergeSort.cs
+    * QuickSort.cs
